@@ -1,4 +1,5 @@
 import { User } from "@/app/context/auth-context";
+import { AdminUserList } from "@/app/components/home/admin-user-list";
 
 interface HomeMainProps {
   user: User | null;
@@ -9,9 +10,13 @@ export function HomeMain({ user }: HomeMainProps) {
     return null;
   }
   return (
-    <main className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 flex-1 flex flex-col justify-center">
-      <div className="mx-auto w-full max-w-3xl">
-        <div className="bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-6 py-10 shadow-xl border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl sm:px-12">
+    <main className="px-4 py-12 sm:px-6 lg:px-8  flex flex-col justify-center ">
+      <div
+        className={`mx-auto w-full  ${user?.role === "admin" && "flex gap-5"} `}
+      >
+        <div
+          className={`bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-6 py-10 shadow-xl border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl sm:px-12  ${user?.role === "admin" && "flex-1"} `}
+        >
           <div className="flex flex-col sm:flex-row items-center gap-6 pb-8 border-b border-zinc-200/65 dark:border-zinc-850">
             {/* Avatar */}
             <div className="h-20 w-20 rounded-full bg-linear-to-tr from-indigo-500 to-violet-600 flex items-center justify-center text-3xl font-extrabold text-white shadow-lg shadow-indigo-500/20">
@@ -121,6 +126,9 @@ export function HomeMain({ user }: HomeMainProps) {
             </div>
           </div>
         </div>
+        {user?.role === "admin" && (
+          <AdminUserList admin={user?.role === "admin"} />
+        )}
       </div>
     </main>
   );
