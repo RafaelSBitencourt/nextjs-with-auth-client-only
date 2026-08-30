@@ -1,7 +1,13 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { User, getUsers, createUser, updateUser, deleteUser } from "@/app/data/users";
+import {
+  User,
+  getUsers,
+  createUser,
+  updateUser,
+  deleteUser,
+} from "@/app/data/users";
 
 interface AdminUserListProps {
   admin: boolean;
@@ -71,7 +77,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
       const updated = await updateUser(user.id, { role: newRole });
       if (updated) {
         setUsersList((prev) =>
-          prev.map((u) => (u.id === user.id ? updated : u))
+          prev.map((u) => (u.id === user.id ? updated : u)),
         );
       }
     } catch (error) {
@@ -129,17 +135,21 @@ export function AdminUserList({ admin }: AdminUserListProps) {
           </p>
         </div>
 
-        <div className="flex items-center gap-3">
-          <button
-            onClick={() => setIsFormOpen(!isFormOpen)}
-            className="inline-flex items-center justify-center rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-sm font-semibold shadow-md shadow-indigo-500/15 hover:shadow-indigo-500/25 transition-all duration-150 active:scale-95 cursor-pointer"
-          >
-            {isFormOpen ? "Cancelar" : "+ Novo Usuário"}
-          </button>
-          <span className="self-start sm:self-center inline-flex items-center rounded-full bg-red-500/10 px-2.5 py-0.5 text-xs font-semibold text-red-600 dark:text-red-400 border border-red-500/20">
+        <div className="flex items-center justify-center sm:justify-end">
+          <span className="inline-flex items-center justify-center rounded-full bg-red-500/10 px-3 py-1.5 text-xs font-semibold text-red-600 dark:text-red-400 border border-red-500/20 whitespace-nowrap text-center">
             Acesso Admin
           </span>
         </div>
+      </div>
+
+      {/* Botão de Novo Usuário (Linha abaixo) */}
+      <div className="mt-6 flex justify-start">
+        <button
+          onClick={() => setIsFormOpen(!isFormOpen)}
+          className="inline-flex items-center justify-center rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 text-sm font-semibold shadow-md shadow-indigo-500/15 hover:shadow-indigo-500/25 transition-all duration-150 active:scale-95 cursor-pointer whitespace-nowrap"
+        >
+          {isFormOpen ? "Cancelar" : "+ Novo Usuário"}
+        </button>
       </div>
 
       {/* Formulário de Criação (Toggled) */}

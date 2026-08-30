@@ -12,6 +12,12 @@ Este é um boilerplate moderno de autenticação client-side desenvolvido com **
 
 ---
 
+## 📸 Demonstração (Tela Logada do Administrador)
+
+![Tela Logada do Administrador](./public/painel-admin-screenshot.png)
+
+---
+
 ## 🚀 Tecnologias Utilizadas
 
 - **Core**: [Next.js](https://nextjs.org) (App Router)
@@ -25,9 +31,8 @@ Este é um boilerplate moderno de autenticação client-side desenvolvido com **
 
 A lógica de autenticação é implementada em nível de cliente:
 
-1. **Contexto de Autenticação (`AuthProvider`)**: 
+1. **Contexto de Autenticação (`AuthProvider`)**:
    Definido em [auth-context.tsx](file:///c:/Users/rafae/Projetos/nextjs-with-auth-client-only/app/context/auth-context.tsx), ele mantém o estado do usuário ativo (`user`), estado de carregamento (`loading`) e funções auxiliares de `login` e `logout`. Ele lê e salva as credenciais automaticamente no `localStorage` sob a chave `auth_user`.
-   
 2. **Rotas Protegidas (`ProtectedRoute`)**:
    O componente wrapper [protected-route.tsx](file:///c:/Users/rafae/Projetos/nextjs-with-auth-client-only/app/components/common/protected-route.tsx) envolve páginas privadas (como a Home). Caso o usuário tente acessar uma rota protegida sem uma sessão ativa, ele é redirecionado automaticamente para `/login`.
 
@@ -37,10 +42,10 @@ A lógica de autenticação é implementada em nível de cliente:
 
 O arquivo [users.ts](file:///c:/Users/rafae/Projetos/nextjs-with-auth-client-only/app/data/users.ts) contém usuários mockados para testar diferentes níveis de permissão no painel:
 
-| Perfil | E-mail | Senha | Nome | Função (Role) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Administrador** | `admin@example.com` | `password123` | John Doe | `admin` |
-| **Usuário Comum** | `user@example.com` | `password123` | Jane Doe | `user` |
+| Perfil            | E-mail              | Senha         | Nome     | Função (Role) |
+| :---------------- | :------------------ | :------------ | :------- | :------------ |
+| **Administrador** | `admin@example.com` | `password123` | John Doe | `admin`       |
+| **Usuário Comum** | `user@example.com`  | `password123` | Jane Doe | `user`        |
 
 ---
 

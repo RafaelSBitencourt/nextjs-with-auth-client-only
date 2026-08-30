@@ -12,7 +12,7 @@ export function HomeMain({ user }: HomeMainProps) {
   return (
     <main className="px-4 py-12 sm:px-6 lg:px-8  flex flex-col justify-center ">
       <div
-        className={`mx-auto w-full  ${user?.role === "admin" && "flex gap-5"} `}
+        className={`mx-auto w-full ${user?.role === "admin" ? "flex flex-col lg:flex-row gap-5" : ""}`}
       >
         <div
           className={`bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-6 py-10 shadow-xl border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl sm:px-12  ${user?.role === "admin" && "flex-1"} `}
