@@ -2,6 +2,14 @@
 
 Este é um boilerplate moderno de autenticação client-side desenvolvido com **Next.js**, **React**, **Tailwind CSS** e **TypeScript**. O projeto foi estruturado para demonstrar fluxos de login, controle de sessão local (`localStorage`) e proteção de rotas privadas de forma totalmente client-side.
 
+🌐 **Link do Projeto Publicado**: [https://rafaelsbitencourt.github.io/nextjs-with-auth-client-only/](https://rafaelsbitencourt.github.io/nextjs-with-auth-client-only/)
+
+---
+
+## 📸 Demonstração (Tela de Login)
+
+![Tela de Login](./public/login-screenshot.png)
+
 ---
 
 ## 🚀 Tecnologias Utilizadas
