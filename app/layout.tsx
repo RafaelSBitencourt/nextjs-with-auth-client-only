@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Next.js Boilerplate with Auth",
-  description: "Boilerplate de autenticação moderna client-side",
+  title: "Next.js with Auth",
+  description: "Modern Authentication boilerplate using client-side routes",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
