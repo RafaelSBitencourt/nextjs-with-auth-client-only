@@ -1,7 +1,7 @@
 "use client";
 
 import { useAuth } from "@/app/context/auth-context";
-import { ProtectedRoute } from "@/app/components/protected-route";
+import { ProtectedRoute } from "@/app/components/common/protected-route";
 import { HomeHeader } from "./components/home/header.";
 import { HomeMain } from "./components/home/main";
 
