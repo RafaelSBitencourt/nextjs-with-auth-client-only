@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { users } from "@/app/data/users";
+import { getUserByEmail } from "../data/users";
 
 export interface User {
   id: string;
@@ -13,7 +13,10 @@ export interface User {
 interface AuthContextType {
   user: User | null;
   loading: boolean;
-  login: (email: string, password: string) => Promise<{ success: boolean; message?: string }>;
+  login: (
+    email: string,
+    password: string,
+  ) => Promise<{ success: boolean; message?: string }>;
   logout: () => void;
 }
 
@@ -39,27 +42,26 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const login = async (email: string, password: string) => {
     try {
-      const foundUser = users.find(
-        (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
-      );
+      const foundUser = await getUserByEmail(email);
 
-      if (foundUser) {
+      if (foundUser && foundUser.password === password) {
         const loggedUser: User = {
           id: foundUser.id,
           name: foundUser.name,
           email: foundUser.email,
           role: foundUser.role,
         };
-
         setUser(loggedUser);
         localStorage.setItem("auth_user", JSON.stringify(loggedUser));
         return { success: true };
       }
-
       return { success: false, message: "E-mail ou senha incorretos." };
     } catch (error) {
       console.error("Erro durante o login:", error);
-      return { success: false, message: "Ocorreu um erro ao realizar o login." };
+      return {
+        success: false,
+        message: "Ocorreu um erro ao realizar o login.",
+      };
     }
   };
 

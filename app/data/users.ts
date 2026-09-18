@@ -45,7 +45,8 @@ export const users: User[] = [
 ];
 
 // Helper para simular delay de rede (1 segundo)
-const delay = (ms: number = 1000) => new Promise((resolve) => setTimeout(resolve, ms));
+const delay = (ms: number = 1000) =>
+  new Promise((resolve) => setTimeout(resolve, ms));
 
 // READ (Listar todos)
 export const getUsers = async (): Promise<User[]> => {
@@ -57,6 +58,13 @@ export const getUsers = async (): Promise<User[]> => {
 export const getUserById = async (id: string): Promise<User | null> => {
   await delay();
   const user = users.find((u) => u.id === id);
+  return user ? { ...user } : null;
+};
+
+export const getUserByEmail = async (email: string): Promise<User | null> => {
+  await delay();
+  const normalizedEmail = email.trim().toLowerCase();
+  const user = users.find((u) => u.email.toLowerCase() === normalizedEmail);
   return user ? { ...user } : null;
 };
 
@@ -77,7 +85,7 @@ export const createUser = async (userData: Omit<User, "id">): Promise<User> => {
 // UPDATE (Atualizar)
 export const updateUser = async (
   id: string,
-  updates: Partial<Omit<User, "id">>
+  updates: Partial<Omit<User, "id">>,
 ): Promise<User | null> => {
   await delay();
   const index = users.findIndex((u) => u.id === id);
@@ -94,4 +102,3 @@ export const deleteUser = async (id: string): Promise<boolean> => {
   users.splice(index, 1);
   return true;
 };
-
