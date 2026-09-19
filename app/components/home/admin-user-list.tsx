@@ -113,7 +113,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
         } `}
     >
       {/* Cabeçalho */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200/65 dark:border-zinc-850">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200 dark:border-zinc-800">
         <div>
           <div className="flex items-center gap-2.5">
             <div className="h-8 w-8 rounded-lg bg-red-500/10 dark:bg-red-500/20 flex items-center justify-center text-red-600 dark:text-red-400">
@@ -247,18 +247,18 @@ export function AdminUserList({ admin }: AdminUserListProps) {
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
-                className="flex items-center justify-between py-3.5 border-b border-zinc-150 dark:border-zinc-800 animate-pulse"
+                className="flex items-center justify-between py-3.5 border-b border-zinc-200 dark:border-zinc-800 animate-pulse"
               >
                 <div className="flex items-center gap-3">
-                  <div className="h-9 w-9 rounded-full bg-zinc-200 dark:bg-zinc-850"></div>
+                  <div className="h-9 w-9 rounded-full bg-zinc-200 dark:bg-zinc-800"></div>
                   <div className="space-y-1.5">
-                    <div className="h-4 w-28 bg-zinc-200 dark:bg-zinc-850 rounded-sm"></div>
-                    <div className="h-3 w-16 bg-zinc-150 dark:bg-zinc-850/80 rounded-sm"></div>
+                    <div className="h-4 w-28 bg-zinc-200 dark:bg-zinc-800 rounded-sm"></div>
+                    <div className="h-3 w-16 bg-zinc-100 dark:bg-zinc-800/80 rounded-sm"></div>
                   </div>
                 </div>
-                <div className="h-5 w-20 bg-zinc-200 dark:bg-zinc-850 rounded-full"></div>
-                <div className="h-4 w-8 bg-zinc-150 dark:bg-zinc-850 rounded-sm"></div>
-                <div className="h-8 w-8 bg-zinc-200 dark:bg-zinc-850 rounded-lg"></div>
+                <div className="h-5 w-20 bg-zinc-200 dark:bg-zinc-800 rounded-full"></div>
+                <div className="h-4 w-8 bg-zinc-100 dark:bg-zinc-800 rounded-sm"></div>
+                <div className="h-8 w-8 bg-zinc-200 dark:bg-zinc-800 rounded-lg"></div>
               </div>
             ))}
           </div>
@@ -321,7 +321,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                         >
                           {item.name.charAt(0).toUpperCase()}
                         </div>
-                        <span className="text-zinc-900 dark:text-zinc-150 font-medium">
+                        <span className="text-zinc-900 dark:text-zinc-200 font-medium">
                           {item.name}
                         </span>
                       </div>
@@ -342,7 +342,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                       >
                         {isUpdating ? (
                           <span
-                            className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border border-zinc-200 dark:border-zinc-850 animate-pulse`}
+                            className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border border-zinc-200 dark:border-zinc-800 animate-pulse`}
                           >
                             <div className="h-3 w-3 animate-spin rounded-full border-2 border-zinc-400 border-t-zinc-600 dark:border-zinc-700 dark:border-t-zinc-300"></div>
                             Alterando...
@@ -371,10 +371,10 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                         onClick={() => handleDelete(item.id)}
                         disabled={isDeleting}
                         title="Excluir Usuário"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 text-zinc-400 hover:text-red-650 dark:hover:text-red-400 transition-colors cursor-pointer"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"
                       >
                         {isDeleting ? (
-                          <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-zinc-350 border-t-red-600 dark:border-zinc-700 dark:border-t-red-400"></div>
+                          <div className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-zinc-300 border-t-red-600 dark:border-zinc-700 dark:border-t-red-400"></div>
                         ) : (
                           <svg
                             className="h-4.5 w-4.5"

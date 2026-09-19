@@ -1,3 +1,5 @@
+import { ThemeToggle } from "@/app/components/common/theme-toggle";
+
 interface HomeHeaderProps {
   onLogout: () => void;
 }
@@ -27,7 +29,8 @@ export function HomeHeader({ onLogout }: HomeHeaderProps) {
           </span>
         </div>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
           <button
             onClick={onLogout}
             className="inline-flex items-center justify-center rounded-xl bg-zinc-100 hover:bg-zinc-200 dark:bg-zinc-800 dark:hover:bg-zinc-700 px-4 py-2 text-sm font-semibold text-zinc-700 dark:text-zinc-300 transition-all duration-150 active:scale-95 cursor-pointer"

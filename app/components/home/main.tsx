@@ -17,7 +17,7 @@ export function HomeMain({ user }: HomeMainProps) {
         <div
           className={`bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-6 py-10 shadow-xl border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl sm:px-12  ${user?.role === "admin" && "flex-1"} `}
         >
-          <div className="flex flex-col sm:flex-row items-center gap-6 pb-8 border-b border-zinc-200/65 dark:border-zinc-850">
+          <div className="flex flex-col sm:flex-row items-center gap-6 pb-8 border-b border-zinc-200 dark:border-zinc-800">
             {/* Avatar */}
             <div className="h-20 w-20 rounded-full bg-linear-to-tr from-indigo-500 to-violet-600 flex items-center justify-center text-3xl font-extrabold text-white shadow-lg shadow-indigo-500/20">
               {user?.name ? user.name.charAt(0).toUpperCase() : "?"}
@@ -56,7 +56,7 @@ export function HomeMain({ user }: HomeMainProps) {
               </p>
             </div>
 
-            <div className="border-t border-zinc-200/50 dark:border-zinc-850/50 pt-4">
+            <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-4">
               <dl className="grid grid-cols-1 gap-x-4 gap-y-6 sm:grid-cols-2">
                 <div className="sm:col-span-1">
                   <dt className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
@@ -109,10 +109,10 @@ export function HomeMain({ user }: HomeMainProps) {
                 />
               </svg>
               <div>
-                <h4 className="text-sm font-semibold text-indigo-900 dark:text-indigo-250">
+                <h4 className="text-sm font-semibold text-indigo-900 dark:text-indigo-200">
                   Como funciona essa proteção de rota?
                 </h4>
-                <p className="mt-1 text-xs text-indigo-700/90 dark:text-indigo-350 leading-relaxed">
+                <p className="mt-1 text-xs text-indigo-700/90 dark:text-indigo-300 leading-relaxed">
                   Se você tentar abrir uma aba anônima e acessar diretamente
                   esta página, o wrapper{" "}
                   <code className="font-mono bg-indigo-100/50 dark:bg-indigo-900/40 px-1 rounded">

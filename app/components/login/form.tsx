@@ -57,7 +57,7 @@ export function LoginForm() {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-red-850 dark:text-red-400">
+              <h3 className="text-sm font-medium text-red-700 dark:text-red-400">
                 {error}
               </h3>
             </div>
@@ -111,7 +111,7 @@ export function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="flex w-full justify-center rounded-xl bg-linear-to-r from-indigo-500 to-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:from-indigo-600 hover:to-violet-750 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
+          className="flex w-full justify-center rounded-xl bg-linear-to-r from-indigo-500 to-violet-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md hover:from-indigo-600 hover:to-violet-700 focus-visible:outline-hidden focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 active:scale-[0.98] transition-all duration-150 disabled:opacity-50 disabled:pointer-events-none cursor-pointer"
         >
           {loading ? (
             <div className="flex items-center gap-2">

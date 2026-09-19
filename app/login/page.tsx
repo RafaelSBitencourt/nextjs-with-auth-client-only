@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { LoginHeader } from "@/app/components/login/header";
 import { LoginForm } from "@/app/components/login/form";
 import { LoginFooter } from "@/app/components/login/footer";
+import { ThemeToggle } from "@/app/components/common/theme-toggle";
 
 export default function LoginPage() {
   const { user } = useAuth();
@@ -19,7 +20,10 @@ export default function LoginPage() {
   }, [user, router]);
 
   return (
-    <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-linear-to-tr from-zinc-100 via-white to-zinc-200 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 font-sans">
+    <div className="relative flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 bg-linear-to-tr from-zinc-100 via-white to-zinc-200 dark:from-zinc-900 dark:via-zinc-900 dark:to-zinc-900 font-sans">
+      <div className="absolute top-4 right-4 sm:top-6 sm:right-8">
+        <ThemeToggle />
+      </div>
       <LoginHeader />
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
