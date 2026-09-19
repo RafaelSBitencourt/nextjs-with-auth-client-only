@@ -29,10 +29,6 @@ export function AdminUserList({ admin }: AdminUserListProps) {
   const [pendingDeletes, setPendingDeletes] = useState<string[]>([]);
   const [pendingUpdates, setPendingUpdates] = useState<string[]>([]);
 
-  useEffect(() => {
-    fetchUsers();
-  }, []);
-
   const fetchUsers = async () => {
     setLoading(true);
     try {
@@ -44,6 +40,10 @@ export function AdminUserList({ admin }: AdminUserListProps) {
       setLoading(false);
     }
   };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   const handleCreate = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,9 +103,8 @@ export function AdminUserList({ admin }: AdminUserListProps) {
 
   return (
     <div
-      className={`bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-6 py-10 shadow-xl border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl sm:px-12 animate-fade-in ${
-        admin && "flex-1"
-      } `}
+      className={`bg-white/80 dark:bg-zinc-900/80 backdrop-blur-md px-6 py-10 shadow-xl border border-zinc-200/50 dark:border-zinc-800/50 rounded-3xl sm:px-12 animate-fade-in ${admin && "flex-1"
+        } `}
     >
       {/* Cabeçalho */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-zinc-200/65 dark:border-zinc-850">
@@ -302,19 +301,17 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                 return (
                   <tr
                     key={item.id}
-                    className={`hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors duration-150 ${
-                      isDeleting && "opacity-45 pointer-events-none"
-                    }`}
+                    className={`hover:bg-zinc-50/50 dark:hover:bg-zinc-900/30 transition-colors duration-150 ${isDeleting && "opacity-45 pointer-events-none"
+                      }`}
                   >
                     {/* Informações básicas */}
                     <td className="whitespace-nowrap py-4 pr-3 text-sm font-medium">
                       <div className="flex items-center gap-3">
                         <div
-                          className={`h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold text-white shadow-xs select-none ${
-                            isItemAdmin
+                          className={`h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold text-white shadow-xs select-none ${isItemAdmin
                               ? "bg-linear-to-tr from-rose-500 to-red-600"
                               : "bg-linear-to-tr from-emerald-500 to-teal-600"
-                          }`}
+                            }`}
                         >
                           {item.name.charAt(0).toUpperCase()}
                         </div>
@@ -346,11 +343,10 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                           </span>
                         ) : (
                           <span
-                            className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border transition-colors ${
-                              isItemAdmin
+                            className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border transition-colors ${isItemAdmin
                                 ? "bg-red-50 text-red-700 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900/50 hover:bg-red-100/50 dark:hover:bg-red-900/40"
                                 : "bg-green-50 text-green-700 border-green-200 dark:bg-green-950/30 dark:text-green-400 dark:border-green-900/50 hover:bg-green-100/50 dark:hover:bg-green-900/40"
-                            }`}
+                              }`}
                           >
                             {isItemAdmin ? "Administrador" : "Usuário Comum"}
                           </span>

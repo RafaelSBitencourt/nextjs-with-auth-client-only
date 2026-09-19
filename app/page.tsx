@@ -2,7 +2,7 @@
 
 import { useAuth } from "@/app/context/auth-context";
 import { ProtectedRoute } from "@/app/components/common/protected-route";
-import { HomeHeader } from "./components/home/header.";
+import { HomeHeader } from "./components/home/header";
 import { HomeMain } from "./components/home/main";
 
 export default function Home() {

@@ -3,7 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches:
-      - master # Dispara o workflow em todo push para a branch master
+      - main # Dispara o workflow em todo push para a branch master
 
 # Permissões necessárias para publicar no GitHub Pages
 permissions:
