@@ -29,20 +29,26 @@ export function AdminUserList({ admin }: AdminUserListProps) {
   const [pendingDeletes, setPendingDeletes] = useState<string[]>([]);
   const [pendingUpdates, setPendingUpdates] = useState<string[]>([]);
 
-  const fetchUsers = async () => {
-    setLoading(true);
-    try {
-      const data = await getUsers();
-      setUsersList(data);
-    } catch (error) {
-      console.error("Erro ao carregar usuários:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
-    fetchUsers();
+    let isMounted = true;
+
+    getUsers()
+      .then((data) => {
+        if (isMounted) {
+          setUsersList(data);
+          setLoading(false);
+        }
+      })
+      .catch((error) => {
+        if (isMounted) {
+          console.error("Erro ao carregar usuários:", error);
+          setLoading(false);
+        }
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleCreate = async (e: React.FormEvent) => {

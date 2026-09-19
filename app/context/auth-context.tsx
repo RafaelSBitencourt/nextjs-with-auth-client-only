@@ -27,17 +27,29 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Carrega o usuário do localStorage ao iniciar
-    try {
-      const storedUser = localStorage.getItem("auth_user");
-      if (storedUser) {
-        setUser(JSON.parse(storedUser));
+    const syncUser = () => {
+      try {
+        const storedUser = localStorage.getItem("auth_user");
+        setUser(storedUser ? JSON.parse(storedUser) : null);
+      } catch (error) {
+        console.error("Erro ao ler usuário do localStorage:", error);
+      } finally {
+        setLoading(false);
       }
-    } catch (error) {
-      console.error("Erro ao ler usuário do localStorage:", error);
-    } finally {
-      setLoading(false);
-    }
+    };
+
+    queueMicrotask(syncUser);
+
+    const handleStorageChange = (e: StorageEvent) => {
+      if (e.key === "auth_user") {
+        syncUser();
+      }
+    };
+
+    window.addEventListener("storage", handleStorageChange);
+    return () => {
+      window.removeEventListener("storage", handleStorageChange);
+    };
   }, []);
 
   const login = async (email: string, password: string) => {

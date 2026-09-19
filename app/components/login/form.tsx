@@ -31,7 +31,7 @@ export function LoginForm() {
       } else {
         router.replace("/");
       }
-    } catch (err) {
+    } catch {
       setError("Ocorreu um erro ao processar sua solicitação.");
     } finally {
       setLoading(false);
