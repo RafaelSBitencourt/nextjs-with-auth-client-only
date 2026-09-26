@@ -51,7 +51,12 @@ const delay = (ms: number = 1000) =>
 // READ (Listar todos)
 export const getUsers = async (): Promise<User[]> => {
   await delay();
-  return users.map(({ password: _, ...userWithoutPassword }) => userWithoutPassword);
+  return users.map((user) => ({
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    role: user.role,
+  }));
 };
 
 // READ (Buscar por ID)
