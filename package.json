@@ -1,11 +1,11 @@
 {
-  "name": "my-app",
+  "name": "nextjs-with-auth-client-only",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "start": "npx serve out",
     "lint": "eslint",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d out"

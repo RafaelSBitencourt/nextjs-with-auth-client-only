@@ -87,9 +87,11 @@ npm run dev
 
 Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-### 3. Build para Produção
+### 3. Build para Produção e Pré-visualização Estática
 
 ```bash
 npm run build
 npm start
 ```
+
+> **Nota:** Como o projeto utiliza exportação estática (`output: "export"`), o comando `npm start` executa um servidor estático local (`npx serve out`) para pré-visualizar a aplicação a partir da pasta `out/`.
