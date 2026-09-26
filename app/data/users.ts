@@ -3,7 +3,7 @@ export interface User {
   name: string;
   email: string;
   password?: string;
-  role: string;
+  role: "admin" | "user";
 }
 
 export const users: User[] = [
@@ -51,7 +51,7 @@ const delay = (ms: number = 1000) =>
 // READ (Listar todos)
 export const getUsers = async (): Promise<User[]> => {
   await delay();
-  return [...users];
+  return users.map(({ password: _, ...userWithoutPassword }) => userWithoutPassword);
 };
 
 // READ (Buscar por ID)
@@ -79,7 +79,7 @@ export const createUser = async (userData: Omit<User, "id">): Promise<User> => {
     ...userData,
   };
   users.push(newUser);
-  return { ...newUser };
+  return newUser;
 };
 
 // UPDATE (Atualizar)

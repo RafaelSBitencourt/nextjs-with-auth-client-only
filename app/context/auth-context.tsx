@@ -1,14 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getUserByEmail } from "../data/users";
+import { getUserByEmail, type User } from "../data/users";
 
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  role: string;
-}
 
 interface AuthContextType {
   user: User | null;

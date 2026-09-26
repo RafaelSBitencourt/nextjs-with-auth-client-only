@@ -14,7 +14,7 @@ interface AdminUserListProps {
 }
 
 export function AdminUserList({ admin }: AdminUserListProps) {
-  const [usersList, setUsersList] = useState<User[]>([]);
+  const [usersList, setUsersList] = useState<Partial<User>[]>([]);
   const [loading, setLoading] = useState(true);
   const [isFormOpen, setIsFormOpen] = useState(false);
 
@@ -22,7 +22,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("user");
+  const [role, setRole] = useState<"admin" | "user">("user");
   const [submitting, setSubmitting] = useState(false);
 
   // Estados de processamento (para mostrar loading spinner por usuário)
@@ -76,11 +76,11 @@ export function AdminUserList({ admin }: AdminUserListProps) {
     }
   };
 
-  const handleToggleRole = async (user: User) => {
+  const handleToggleRole = async (user: Partial<User>) => {
     const newRole = user.role === "admin" ? "user" : "admin";
-    setPendingUpdates((prev) => [...prev, user.id]);
+    setPendingUpdates((prev) => [...prev, user.id!]);
     try {
-      const updated = await updateUser(user.id, { role: newRole });
+      const updated = await updateUser(user.id!, { role: newRole });
       if (updated) {
         setUsersList((prev) =>
           prev.map((u) => (u.id === user.id ? updated : u)),
@@ -212,7 +212,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
               </label>
               <select
                 value={role}
-                onChange={(e) => setRole(e.target.value)}
+                onChange={(e) => setRole(e.target.value as "admin" | "user")}
                 className="w-full text-sm rounded-xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-3 py-2 text-zinc-900 dark:text-white focus:outline-hidden focus:ring-2 focus:ring-indigo-500/25"
               >
                 <option value="user">Usuário Comum</option>
@@ -301,8 +301,8 @@ export function AdminUserList({ admin }: AdminUserListProps) {
             <tbody className="divide-y divide-zinc-200/40 dark:divide-zinc-800/40">
               {usersList.map((item) => {
                 const isItemAdmin = item.role === "admin";
-                const isDeleting = pendingDeletes.includes(item.id);
-                const isUpdating = pendingUpdates.includes(item.id);
+                const isDeleting = pendingDeletes.includes(item.id!);
+                const isUpdating = pendingUpdates.includes(item.id!);
 
                 return (
                   <tr
@@ -315,14 +315,14 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                       <div className="flex items-center gap-3">
                         <div
                           className={`h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold text-white shadow-xs select-none ${isItemAdmin
-                              ? "bg-linear-to-tr from-rose-500 to-red-600"
-                              : "bg-linear-to-tr from-emerald-500 to-teal-600"
+                            ? "bg-linear-to-tr from-rose-500 to-red-600"
+                            : "bg-linear-to-tr from-emerald-500 to-teal-600"
                             }`}
                         >
-                          {item.name.charAt(0).toUpperCase()}
+                          {item?.name?.charAt(0).toUpperCase()}
                         </div>
                         <span className="text-zinc-900 dark:text-zinc-200 font-medium">
-                          {item.name}
+                          {item?.name}
                         </span>
                       </div>
                     </td>
@@ -350,8 +350,8 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                         ) : (
                           <span
                             className={`inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border transition-colors ${isItemAdmin
-                                ? "bg-red-50 text-red-700 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900/50 hover:bg-red-100/50 dark:hover:bg-red-900/40"
-                                : "bg-green-50 text-green-700 border-green-200 dark:bg-green-950/30 dark:text-green-400 dark:border-green-900/50 hover:bg-green-100/50 dark:hover:bg-green-900/40"
+                              ? "bg-red-50 text-red-700 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900/50 hover:bg-red-100/50 dark:hover:bg-red-900/40"
+                              : "bg-green-50 text-green-700 border-green-200 dark:bg-green-950/30 dark:text-green-400 dark:border-green-900/50 hover:bg-green-100/50 dark:hover:bg-green-900/40"
                               }`}
                           >
                             {isItemAdmin ? "Administrador" : "Usuário Comum"}
@@ -368,7 +368,7 @@ export function AdminUserList({ admin }: AdminUserListProps) {
                     {/* Botões de Ação */}
                     <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium">
                       <button
-                        onClick={() => handleDelete(item.id)}
+                        onClick={() => handleDelete(item.id!)}
                         disabled={isDeleting}
                         title="Excluir Usuário"
                         className="inline-flex h-8 w-8 items-center justify-center rounded-lg hover:bg-red-50 dark:hover:bg-red-950/30 text-zinc-400 hover:text-red-600 dark:hover:text-red-400 transition-colors cursor-pointer"

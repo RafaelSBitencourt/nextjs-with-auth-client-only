@@ -1,5 +1,5 @@
-import { User } from "@/app/context/auth-context";
 import { AdminUserList } from "@/app/components/home/admin-user-list";
+import { User } from "@/app/data/users";
 
 interface HomeMainProps {
   user: User | null;
@@ -29,11 +29,10 @@ export function HomeMain({ user }: HomeMainProps) {
                   Olá, {user?.name}!
                 </h1>
                 <span
-                  className={`mx-auto sm:mx-0 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${
-                    user?.role === "admin"
+                  className={`mx-auto sm:mx-0 inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${user?.role === "admin"
                       ? "bg-red-50 text-red-700 border-red-200 dark:bg-red-950/30 dark:text-red-400 dark:border-red-900/50"
                       : "bg-green-50 text-green-700 border-green-200 dark:bg-green-950/30 dark:text-green-400 dark:border-green-900/50"
-                  }`}
+                    }`}
                 >
                   {user?.role === "admin" ? "Administrador" : "Usuário Comum"}
                 </span>
