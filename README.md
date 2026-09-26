@@ -36,6 +36,12 @@ A lógica de autenticação é implementada em nível de cliente:
 2. **Rotas Protegidas (`ProtectedRoute`)**:
    O componente wrapper [protected-route.tsx](./app/components/common/protected-route.tsx) envolve páginas privadas (como a Home). Caso o usuário tente acessar uma rota protegida sem uma sessão ativa, ele é redirecionado automaticamente para `/login`.
 
+> [!NOTE]
+> **Nota de Arquitetura & Boas Práticas em Produção:**
+> Este projeto foi desenhado especificamente para demonstrar fluxos de rotas protegidas, contextos de autenticação reativos e controle de sessão no **Next.js App Router** dentro de uma hospedagem **100% estática (GitHub Pages)**, sem backend Node.js dedicado.
+>
+> Em sistemas corporativos ou aplicações completas com backend, as melhores práticas de segurança recomendam autenticação via **Cookies com flag HTTP-only** (para prevenção contra ataques XSS), tokens JWT e validação diretamente no servidor através de **Middlewares** e **React Server Components (RSC)**.
+
 ---
 
 ## 🔑 Credenciais para Teste
